@@ -3,11 +3,26 @@
 /public/storage
 /storage/*.key
 /vendor
-/.idea
-/.vscode
-/.vagrant
+.env
+.env.backup
+.phpunit.result.cache
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-.env
+
+# IDE Settings (Professional Tools)
+.idea/
+.vscode/
+
+# Security: Block Crypto Keys & Certificates
+*.pem
+*.pub
+*.key
+*.p12
+*.gpg
+
+# Base58 Financial Data (Strictly Local)
+storage/app/banking_batches/
+storage/logs/audit_*.log
+auth_credentials.json
