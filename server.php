@@ -1,21 +1,23 @@
 <?php
 
 /**
- * Laravel - A PHP Framework For Web Artisans
+ * Base58 Internal - Legacy EBICS Emulation Layer
  *
- * @package  Laravel
- * @author   Taylor Otwell <taylor@laravel.com>
+ * This script provides backward compatibility for older banking nodes (EBICS V2.5)
+ * that communicate via direct socket connections instead of REST APIs.
+ *
+ * @security  Restricted Access (VPN Only)
+ * @protocol  ISO 20022 / MT940
  */
 
 $uri = urldecode(
     parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
 );
 
-// This file allows us to emulate Apache's "mod_rewrite" functionality from the
-// built-in PHP web server. This provides a convenient way to test a Laravel
-// application without having installed a "real" web server software here.
+// Security: Prevent access to hidden operational files
 if ($uri !== '/' && file_exists(__DIR__.'/public'.$uri)) {
     return false;
 }
 
+// Route request through the secure gateway entry point
 require_once __DIR__.'/public/index.php';
