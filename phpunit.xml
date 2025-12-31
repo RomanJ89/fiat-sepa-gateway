@@ -7,14 +7,13 @@
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
          processIsolation="false"
-         stopOnFailure="false">
+         stopOnFailure="true">
     <testsuites>
-        <testsuite name="Feature">
-            <directory suffix="Test.php">./tests/Feature</directory>
+        <testsuite name="BankingCore">
+            <directory suffix="Test.php">./tests/Banking</directory>
         </testsuite>
-
-        <testsuite name="Unit">
-            <directory suffix="Test.php">./tests/Unit</directory>
+        <testsuite name="Compliance">
+            <directory suffix="Test.php">./tests/Compliance</directory>
         </testsuite>
     </testsuites>
     <filter>
@@ -23,9 +22,11 @@
         </whitelist>
     </filter>
     <php>
-        <env name="APP_ENV" value="testing"/>
+        <env name="APP_ENV" value="testing-secure"/>
         <env name="CACHE_DRIVER" value="array"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_DRIVER" value="sync"/>
+        <env name="BANKING_STRICT_MODE" value="true"/>
+        <env name="MOCK_SWIFT_NET" value="enabled"/>
     </php>
 </phpunit>
