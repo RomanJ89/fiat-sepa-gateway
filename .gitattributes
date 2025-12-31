@@ -1,5 +1,19 @@
+# Base58 - Source Control Policy
+# Enforces consistent line endings across banking nodes (Linux/Windows)
+
 * text=auto
-*.css linguist-vendored
-*.scss linguist-vendored
-*.js linguist-vendored
-CHANGELOG.md export-ignore
+
+# Exclude development assets from production builds (Security & Optimization)
+/tests               export-ignore
+/database            export-ignore
+.editorconfig        export-ignore
+.env.example         export-ignore
+.gitattributes       export-ignore
+.gitignore           export-ignore
+phpunit.xml          export-ignore
+readme.md            export-ignore
+
+# Treat encrypted keys as binary (Prevent corruption)
+*.key binary
+*.p12 binary
+*.pem binary
