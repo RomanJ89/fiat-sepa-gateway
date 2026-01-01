@@ -1,15 +1,31 @@
-@extends("layouts.base")
-@section("title", "inserer un genre")
+@extends('layouts.app')
 
-@section("main")
-  <h2>Inserer un genre</h2>
+@section('content')
+<div class="container">
+    <div class="card">
+        <div class="card-header">{{ __('Register New Financial Node') }}</div>
 
-{{ Form::open(['url' => '/insertGenre']) }}
+        <div class="card-body">
+            <h5 class="mb-4">Configure Upstream Banking Gateway</h5>
+            
+            {!! Form::open(['url' => '/system/nodes/register', 'method' => 'POST']) !!}
+                
+                <div class="form-group">
+                    {!! Form::label('node_name', 'Financial Institution Name (BIC)') !!}
+                    {!! Form::text('node_name', null, ['class' => 'form-control', 'placeholder' => 'e.g. DEUTDEBBXXX', 'required']) !!}
+                </div>
 
-{{ Form::label('name', 'genre') }}
-{{ Form::text('name') }}
+                <div class="form-group mt-3">
+                    {!! Form::label('protocol', 'Communication Protocol') !!}
+                    {!! Form::select('protocol', ['EBICS' => 'EBICS 3.0', 'SWIFT' => 'SWIFT gpi', 'AS2' => 'AS2 (Direct)'], null, ['class' => 'form-control']) !!}
+                </div>
 
-{{ Form::submit('ajouter') }}
+                <div class="mt-4">
+                    {!! Form::submit('Provision Node', ['class' => 'btn btn-success']) !!}
+                </div>
 
-{{ Form::close() }}
+            {!! Form::close() !!}
+        </div>
+    </div>
+</div>
 @endsection
