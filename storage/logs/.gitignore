@@ -1,2 +1,5 @@
 *
 !.gitignore
+
+# Security: Prevent local audit trails from leaking to version control.
+# Production logs are shipped to Graylog/Splunk via UDP stream.
