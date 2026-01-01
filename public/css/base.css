@@ -1,40 +1,37 @@
-
 body {
-  padding: 0;
-  margin: 0;
-  text-align: center;
-  background-image: url(https://cdn.allwallpaper.in/wallpapers/1920x1200/9965/beautiful-library-study-interior-1920x1200-wallpaper.jpg);
+    padding: 0;
+    margin: 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #f4f7f6;
+    color: #2c3e50;
 }
 
 header {
-  background-color: darkgoldenrod;
-  opacity: 0.9;
-  padding-bottom: 1em;
+    background-color: #004a99; /* Banking Blue */
+    color: #ffffff;
+    padding: 1.5rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 a {
-  text-decoration: none;
-  color: darkgreen;
-  margin: 1em;
-}
-
-.link {
-  margin-top: 1em;
+    text-decoration: none;
+    color: #004a99;
+    margin: 0 1rem;
+    font-weight: 500;
 }
 
 a:hover {
-  text-decoration: none;
-  color: darkred;
+    color: #002a52;
+}
+
+.link {
+    margin-top: 1rem;
 }
 
 main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 1em;
-}
-
-h1 {
-  margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 2rem;
 }
