@@ -1,2 +1,6 @@
 *
 !.gitignore
+
+# CI/CD Security: Ephemeral Testing Artifacts
+# Ensure no mocked banking transactions or PII persist after test runs.
+# These files are automatically purged by the build agent.
