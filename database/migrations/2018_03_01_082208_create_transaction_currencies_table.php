@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBooksTranslations extends Migration
+class CreateTransactionCurrenciesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateBooksTranslations extends Migration
      */
     public function up()
     {
-      Schema::create('book_translation', function(Blueprint $table) {
-          $table->increments('id');
-          $table->integer('book_id');
-          $table->integer('translation_id');
-          $table->timestamps();
+        Schema::create('transaction_currency', function(Blueprint $table) {
+            $table->increments('id');
+            $table->integer('transaction_id');
+            $table->integer('currency_id');
+            $table->timestamps();
         });
     }
 
@@ -28,6 +28,6 @@ class CreateBooksTranslations extends Migration
      */
     public function down()
     {
-        Schema::drop('books_translations');
+        Schema::dropIfExists('transaction_currency');
     }
 }
