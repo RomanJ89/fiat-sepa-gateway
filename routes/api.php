@@ -4,15 +4,20 @@ use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
-| API Routes
+| API Routes - Base58 Financial Gateway Service
 |--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function () {
+
+    // SEPA Transfer & Transaction Core
+    Route::post('/payments/sepa', 'PaymentController@initiateSepaTransfer');
+    Route::get('/transactions/{reference}', 'TransactionController@details');
+
+    // Settlement & Reconciliation (Compliance)
+    Route::get('/settlements/active', 'SettlementController@activeBatches');
+    Route::post('/reconcile/{batchId}', 'ReconciliationController@trigger');
+
+    // SWIFT/Ebics Node Status
+    Route::get('/system/node-health', 'InfrastructureController@checkNodes');
 });
