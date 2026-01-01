@@ -8,7 +8,7 @@ use Illuminate\Contracts\Console\Kernel;
 trait CreatesApplication
 {
     /**
-     * Creates the application.
+     * Boot the Banking Gateway application.
      *
      * @return \Illuminate\Foundation\Application
      */
@@ -18,7 +18,14 @@ trait CreatesApplication
 
         $app->make(Kernel::class)->bootstrap();
 
+        // Base58 Security: Lower Bcrypt rounds for faster testing suites.
+        // Production nodes use rounds=14 (High Security).
         Hash::driver('bcrypt')->setRounds(4);
+
+        // Enforce Sandbox Mode for safety
+        if (env('APP_ENV') === 'production') {
+            die('FATAL: Test suite cannot run in PRODUCTION mode.');
+        }
 
         return $app;
     }
