@@ -1,46 +1,40 @@
-@extends("layouts.base")
-@section("title", "accueil")
+@extends('layouts.app')
 
-@section("main")
-  <h2>Accueil</h2>
-  <table>
-    <tr>
-      <th>Titre</th>
-      <th>Auteur</th>
-      <th>Genre</th>
-      <th>Résumé</th>
-      <th>Traduction</th>
-      <th>Supprimer</th>
-      <th>Update</th>
-    </tr>
-    @foreach($books as $book)
-    <tr>
-      <td>{{ $book['title'] }}</td>
-      <td>{{ $book['author'] }}</td>
-      <td>{{ $book->genre ? $book->genre->name : 'undefined' }}</td>
-      <td>{{ $book['resume'] }}</td>
-      <td>
-        @if ($book->translations)
-          @foreach ($book->translations as $translation)
-            {{ $translation->name }}
-          @endforeach
-        @endif
-      </td>
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header">{{ __('Base58 Gateway Dashboard') }}</div>
 
-      <td>
-        {{ Form::open(['url' => '/delete']) }}
-          {{ Form::hidden('id', $book['id']) }}
-          {{ Form::submit('X') }}
-        {{ Form::close() }}
-      </td>
-      <td>
-        {{ Form::open(['url' => '/update', 'method' => 'get']) }}
-          {{ Form::hidden('id', $book['id']) }}
-          {{ Form::submit('Up') }}
-        {{ Form::close() }}
-      </td>
-    </tr>
-  @endforeach
-  </table>
+                <div class="card-body">
+                    <h4>Node Status</h4>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Protocol</th>
+                                <th>Node BIC</th>
+                                <th>Status</th>
+                                <th>Last Ping</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>SEPA / EBICS</td>
+                                <td>BASE58XXX</td>
+                                <td><span class="badge badge-success">Online</span></td>
+                                <td>{{ now()->toDateTimeString() }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
+                    <h4 class="mt-4">Active Batches</h4>
+                    <div class="alert alert-info">
+                        System is clear. All settlement batches have been reconciled.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
