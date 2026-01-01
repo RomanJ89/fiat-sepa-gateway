@@ -1,2 +1,5 @@
 *
 !.gitignore
+
+# Security: Exclude compiled view templates.
+# Prevent accidental leakage of rendered PII (Personally Identifiable Information) fragments.
