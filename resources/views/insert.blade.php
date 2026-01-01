@@ -1,29 +1,39 @@
-@extends("layouts.base")
-@section("title", "inserer un livre")
+@extends('layouts.app')
 
-@section("main")
-  <h2>Inserer un livre</h2>
+@section('content')
+<div class="container">
+    <div class="card">
+        <div class="card-header">{{ __('Create New SEPA Payment Request') }}</div>
 
-{{ Form::open(['url' => '/insert', 'class' => 'form-base']) }}
+        <div class="card-body">
+            {!! Form::open(['url' => '/payments/initiate', 'class' => 'payment-form']) !!}
+                
+                <div class="form-group">
+                    {!! Form::label('creditor_name', 'Creditor Name') !!}
+                    {!! Form::text('creditor_name', null, ['class' => 'form-control', 'placeholder' => 'Recipient Name', 'required']) !!}
+                </div>
 
-{{ Form::label('title', 'nom du livre') }}
-{{ Form::text('title') }}
+                <div class="form-group mt-3">
+                    {!! Form::label('iban', 'Creditor IBAN') !!}
+                    {!! Form::text('iban', null, ['class' => 'form-control', 'placeholder' => 'e.g. DE89...', 'required']) !!}
+                </div>
 
-{{ Form::label('author', 'auteur') }}
-{{ Form::text('author') }}
+                <div class="form-group mt-3">
+                    {!! Form::label('amount', 'Amount (EUR)') !!}
+                    {!! Form::number('amount', null, ['class' => 'form-control', 'step' => '0.01', 'required']) !!}
+                </div>
 
-{{ Form::label('genre', 'genre') }}
-{{ Form::select('genre', $genres,['required' => 'required']) }}
+                <div class="form-group mt-3">
+                    {!! Form::label('remittance_info', 'Remittance Information (Reference)') !!}
+                    {!! Form::text('remittance_info', null, ['class' => 'form-control', 'placeholder' => 'Payment Purpose']) !!}
+                </div>
 
-@foreach($translations as $translation)
-{{ Form::label('translations', $translation->name) }}
-{{ Form::checkbox('translations[]', $translation->id,'') }}
-@endforeach
+                <div class="mt-4">
+                    {!! Form::submit('Authorize Payment', ['class' => 'btn btn-primary']) !!}
+                </div>
 
-{{ Form::label('resume', 'resume') }}
-{{ Form::text('resume') }}
-
-{{ Form::submit('ajouter') }}
-
-{{ Form::close() }}
+            {!! Form::close() !!}
+        </div>
+    </div>
+</div>
 @endsection
