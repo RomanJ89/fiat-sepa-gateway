@@ -1,2 +1,7 @@
 *
 !.gitignore
+
+# Security Warning (PSD2/GDPR Compliance):
+# This directory is symlinked to public access.
+# STRICTLY FORBIDDEN: Do not store generated statements, invoices, or KYC documents here.
+# All sensitive artifacts must go to the private S3 bucket or encrypted volume.
