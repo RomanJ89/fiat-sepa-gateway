@@ -1,35 +1,34 @@
-@extends("layouts.base")
-@section("title", "modifier un livre")
+@extends('layouts.app')
 
-@section("main")
-  <h2>Modifier un livre</h2>
+@section('content')
+<div class="container">
+    <div class="card">
+        <div class="card-header">{{ __('Modify Pending Transaction') }}</div>
 
-{{ Form::open(['url' => '/update']) }}
+        <div class="card-body">
+            {!! Form::open(['url' => '/settlement/update', 'method' => 'POST']) !!}
+                
+                <div class="form-group">
+                    {!! Form::label('reference', 'Transaction Reference (End-to-End ID)') !!}
+                    {!! Form::text('reference', $transaction['ref'], ['class' => 'form-control', 'required']) !!}
+                </div>
 
-{{ Form::label('title', 'nom du livre') }}
-{{ Form::text('title', $book['title'], ['required' => 'required']) }}
+                <div class="form-group mt-3">
+                    {!! Form::label('beneficiary', 'Beneficiary Name') !!}
+                    {!! Form::text('beneficiary', $transaction['name'], ['class' => 'form-control', 'required']) !!}
+                </div>
 
-{{ Form::label('author', 'auteur') }}
-{{ Form::text('author', $book['author'], ['required' => 'required']) }}
+                <div class="form-group mt-3">
+                    {!! Form::label('priority', 'Settlement Priority') !!}
+                    {!! Form::select('priority', ['HIGH' => 'High (SLA 1h)', 'NORMAL' => 'Normal', 'LOW' => 'Batch (24h)'], $transaction['priority'], ['class' => 'form-control']) !!}
+                </div>
 
-{{ Form::label('genre', 'genre') }}
-{{ Form::select('genre', $genres, $book->genre->id) }}
+                <div class="mt-4">
+                    {!! Form::submit('Update Transaction Details', ['class' => 'btn btn-primary']) !!}
+                </div>
 
-{{ Form::label('resume', 'resume') }}
-{{ Form::text('resume', $book['resume'], ['required' => 'required']) }}
-
-@foreach ($translations as $translation)
-  @if($book->translationss->contains($transalation->id))
-    {{ Form::label('translations', $translation->name) }}
-    {{ Form::checkbox('translations[]', $translation->id, ['checked' => 'checked']) }}
-  @else
-    {{ Form::label('translations', $translation->name) }}
-    {{ Form::checkbox('translations[]', $translation->id) }}
-  @endif
-@endforeach
-
-{{ Form::submit('modifier') }}
-
-{{ Form::close() }}
-
+            {!! Form::close() !!}
+        </div>
+    </div>
+</div>
 @endsection
