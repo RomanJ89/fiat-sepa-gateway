@@ -1,2 +1,6 @@
 *
 !.gitignore
+
+# Security: Ephemeral Session Storage
+# Session files are encrypted and stored in Redis/Memcached in production.
+# Local file storage is for development sandbox only.
